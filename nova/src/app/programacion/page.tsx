@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+const Motion = motion as unknown as any;
 import TechBackground from "@/components/TechBackground"; // Asegúrate de haber creado el archivo anterior
 
 const PROJECTS = [
@@ -38,26 +39,24 @@ export default function ProgramacionPage() {
         
         
         <header className="mb-16 border-l-4 border-red-600 pl-6 py-2">
-          <motion.div 
+          <Motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="flex items-center gap-2 mb-2"
           >
             <span className="text-red-500 font-bold text-xs uppercase tracking-[0.4em]">Root@Nerael_Systems:~$</span>
-          </motion.div>
-          <motion.h1 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+          </Motion.div>
+          <h1 
             className="text-5xl md:text-7xl font-sans font-[900] italic uppercase tracking-tighter"
           >
             DEVELOPMENT<span className="text-red-600">_</span>LAB
-          </motion.h1>
+          </h1>
         </header>
 
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {PROJECTS.map((project, i) => (
-            <motion.div
+            <Motion.div
               key={project.id}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -111,12 +110,12 @@ export default function ProgramacionPage() {
               <div className="absolute top-0 right-0 p-1 opacity-10">
                 <span className="text-[40px] font-black">{i + 1}</span>
               </div>
-            </motion.div>
+            </Motion.div>
           ))}
         </div>
 
         
-        <motion.div 
+        <Motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -126,7 +125,7 @@ export default function ProgramacionPage() {
           <p className="text-emerald-900">/ Root Access: Confirmed</p>
           <p className="text-emerald-900">/ Maracaibo_Latam_Server: Online</p>
           <p className="">// End_of_Line</p>
-        </motion.div>
+        </Motion.div>
 
       </div>
     </main>

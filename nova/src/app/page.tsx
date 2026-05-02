@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from "framer-motion";
+const Motion = motion as unknown as any;
 import TechBackground from "@/components/TechBackground";
 import { 
   SiNextdotjs, SiReact, SiTypescript, SiTailwindcss, SiHtml5, SiJavascript,
@@ -43,7 +44,7 @@ function ProjectCard({ title, description, tags, image, link }: {
   title: string, description: string, tags: string[], image: string, link: string 
 }) {
   return (
-    <motion.div 
+    <Motion.div 
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -82,7 +83,7 @@ function ProjectCard({ title, description, tags, image, link }: {
           ))}
         </div>
       </div>
-    </motion.div>
+    </Motion.div>
   );
 }
 
@@ -98,7 +99,7 @@ export default function Home() {
       <div className="relative z-10 flex flex-col items-center p-6 pt-16 pb-32 text-white">
         
       
-        <motion.div 
+        <Motion.div 
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           className="mb-8 flex items-center gap-2 px-4 py-1.5 border border-emerald-500/20 bg-emerald-500/5 rounded-full backdrop-blur-sm"
@@ -112,7 +113,7 @@ export default function Home() {
 
         
         <div className="relative w-full max-w-5xl flex flex-col items-center text-center">
-          <motion.div 
+          <Motion.div 
             initial={{ width: 0, opacity: 0 }}
             animate={{ width: "auto", opacity: 0.7 }}
             className="flex items-center gap-3 mb-4 overflow-hidden whitespace-nowrap"
@@ -122,9 +123,9 @@ export default function Home() {
               SYSTEM_OPERATOR // 2026
             </h2>
             <div className="h-[1px] w-12 bg-red-600"></div>
-          </motion.div>
+          </Motion.div>
 
-          <motion.div 
+          <Motion.div 
             className="relative inline-block"
             animate={{ textShadow: ["0px 0px 0px rgba(255,0,0,0)", "2px 0px 0px rgba(255,0,0,0.8)", "-2px 0px 0px rgba(0,255,255,0.8)", "0px 0px 0px rgba(255,0,0,0)"] }}
             transition={{ repeat: Infinity, duration: 0.15, repeatDelay: 4 }}
@@ -133,7 +134,7 @@ export default function Home() {
               David<br />
               <span className="relative inline-block">
                 Martinez
-                  <motion.span
+                  <Motion.span
                     data-text="NERAEL"
                     initial={{ scale: 0, y: 8 }}
                     animate={{ scale: 1, y: 0 }}
@@ -141,10 +142,10 @@ export default function Home() {
                     className="glitch absolute -bottom-2 -right-2 md:-right-12 bg-red-600 text-black font-mono text-[10px] md:text-xl px-3 py-1 font-black not-italic tracking-[0.14em] md:tracking-[0.22em] whitespace-nowrap shadow-[4px_4px_0px_rgba(0,0,0,1)] z-20"
                   >
                     NERAEL
-                  </motion.span>
+                  </Motion.span>
               </span>
             </h1>
-          </motion.div>
+          </Motion.div>
 
           <p className="mt-8 text-zinc-400 text-lg md:text-2xl font-light max-w-2xl">
             Técnico en Desarrollo de Software especializado en <span className="text-white font-bold italic underline decoration-red-600 decoration-2 underline-offset-4">branding estratégico</span> para <span className="text-red-500 font-mono font-black italic">PRØYET_RED</span>.
@@ -152,7 +153,7 @@ export default function Home() {
         </div>
 
         
-        <motion.div 
+        <Motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -185,7 +186,7 @@ export default function Home() {
               </a>
             </div>
           </div>
-        </motion.div>
+        </Motion.div>
 
         
         <div className={`w-full max-w-5xl mt-32 px-4 ${SHOW_FEATURED ? '' : 'hidden'}`} aria-hidden={!SHOW_FEATURED}>

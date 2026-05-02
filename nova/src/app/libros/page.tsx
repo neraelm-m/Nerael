@@ -2,6 +2,7 @@
 
 import TechBackground from "@/components/TechBackground";
 import { motion } from "framer-motion";
+const Motion = motion as unknown as any;
 import { useState, useEffect } from "react";
 
 // DATA EXPANDIDA: Libros Principales y Archivos de Personajes
@@ -73,19 +74,19 @@ export default function LibrosPage() {
         <LiveStatus />
 
         <header className="mb-12 border-l-4 border-red-600 pl-6 py-2">
-          <motion.h1 
+          <h1 
             className="text-white text-4xl md:text-6xl font-black italic uppercase tracking-tighter hover-glitch cursor-default"
           >
             Data_Archive<span className="animate-pulse text-red-600">_</span>
-          </motion.h1>
+          </h1>
           <p className="text-[10px] mt-2 tracking-[0.4em] text-red-900 font-bold">
             NERAEL_DATABASE // WORLD_BIBLE_ACCESS
           </p>
         </header>
 
         <div className="grid grid-cols-1 gap-4">
-          {BIBLIOTECA.map((item, i) => (
-              <motion.div 
+            {BIBLIOTECA.map((item, i) => (
+              <Motion.div 
               key={item.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -122,7 +123,7 @@ export default function LibrosPage() {
                   </div>
                 )}
               </div>
-            </motion.div>
+            </Motion.div>
           ))}
         </div>
 

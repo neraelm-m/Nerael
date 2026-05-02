@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
+const Motion = motion as unknown as any;
 
 const navLinks = [
   { name: 'INICIO', path: '/' },
@@ -64,7 +65,7 @@ export default function Navbar() {
                       {link.name}
                     </Link>
                     {isActive && (
-                      <motion.div 
+                      <Motion.div 
                         layoutId="nav-active" 
                         className="absolute bottom-0 left-0 w-full h-[1px] bg-red-600" 
                       />
@@ -76,20 +77,20 @@ export default function Navbar() {
           </div>
 
           
-          <button 
+            <button 
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden z-[200] flex flex-col gap-1.5 p-2 focus:outline-none"
             aria-label="Menu"
           >
-            <motion.div 
+            <Motion.div 
               animate={isOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
               className="w-6 h-[2px] bg-white origin-center" 
             />
-            <motion.div 
+            <Motion.div 
               animate={isOpen ? { opacity: 0, x: 20 } : { opacity: 1, x: 0 }}
               className="w-6 h-[2px] bg-red-600" 
             />
-            <motion.div 
+            <Motion.div 
               animate={isOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
               className="w-6 h-[2px] bg-white origin-center" 
             />
@@ -98,9 +99,9 @@ export default function Navbar() {
       </nav>
 
       
-      <AnimatePresence>
+          <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -111,7 +112,7 @@ export default function Navbar() {
               
               <ul className="flex flex-col gap-6 relative z-[160]">
                 {navLinks.map((link, i) => (
-                  <motion.li 
+                  <Motion.li 
                     key={link.name}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -126,7 +127,7 @@ export default function Navbar() {
                     >
                       {link.name}
                     </Link>
-                  </motion.li>
+                  </Motion.li>
                 ))}
               </ul>
 
@@ -141,7 +142,7 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </Motion.div>
         )}
       </AnimatePresence>
     </>

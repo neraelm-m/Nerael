@@ -8,12 +8,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Tu rojo característico del estudio
         'pr-red': '#ef4444'
       },
       fontFamily: {
-        // Sustituimos 'Inter' por la variable de Syne configurada en layout.tsx
-        // Dejamos las demás como fallback por seguridad
         sans: [
           'var(--font-syne)',
           'system-ui',
@@ -24,7 +21,6 @@ module.exports = {
           'Arial',
           'sans-serif'
         ],
-        // Añadimos JetBrains Mono para todo el look técnico y de programación
         mono: [
           'var(--font-mono)',
           'ui-monospace',

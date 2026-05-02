@@ -27,16 +27,16 @@ export default function ProgramacionPage() {
   return (
     <main className="relative min-h-screen bg-black text-white pt-32 pb-20 px-6 md:px-20 font-mono selection:bg-red-600 overflow-hidden">
       
-      {/* 1. EL FONDO TÉCNICO (Capa Z-0) */}
+      
       <TechBackground 
         opacity={0.35} 
         imagePath="/assets/images/wallpaper8.jpg" 
       />
 
-      {/* 2. CONTENIDO (Capa Z-10) */}
+      
       <div className="relative z-10 max-w-6xl mx-auto">
         
-        {/* HEADER TÉCNICO */}
+        
         <header className="mb-16 border-l-4 border-red-600 pl-6 py-2">
           <motion.div 
             initial={{ opacity: 0 }}
@@ -54,7 +54,7 @@ export default function ProgramacionPage() {
           </motion.h1>
         </header>
 
-        {/* GRID DE MÓDULOS */}
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {PROJECTS.map((project, i) => (
             <motion.div
@@ -65,7 +65,7 @@ export default function ProgramacionPage() {
               transition={{ delay: i * 0.1 }}
               className="group relative bg-zinc-950/80 border border-white/5 p-1 overflow-hidden backdrop-blur-sm"
             >
-              {/* HEADER DEL MÓDULO */}
+              
               <div className="bg-zinc-900/50 p-4 border-b border-white/5 flex justify-between items-center">
                 <span className="text-[10px] text-zinc-500 font-bold tracking-widest">{project.id} // {project.name}</span>
                 <div className="flex gap-1">
@@ -75,7 +75,7 @@ export default function ProgramacionPage() {
                 </div>
               </div>
 
-              {/* CUERPO DEL MÓDULO */}
+              
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tech.map(t => (
@@ -107,7 +107,7 @@ export default function ProgramacionPage() {
                 </div>
               </div>
 
-              {/* Decoración tipo terminal */}
+              
               <div className="absolute top-0 right-0 p-1 opacity-10">
                 <span className="text-[40px] font-black">{i + 1}</span>
               </div>
@@ -115,7 +115,7 @@ export default function ProgramacionPage() {
           ))}
         </div>
 
-        {/* CÓDIGO DECORATIVO AL FINAL */}
+        
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

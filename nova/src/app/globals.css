@@ -24,11 +24,10 @@ body {
   text-shadow: 2px 0 #ff0000, -2px 0 #00ffea;
 }
 
-/* Glitch effect for headings (periodic bursts) */
 .glitch {
   position: relative;
   display: inline-block;
-  z-index: 10; /* keep above pseudo layers */
+  z-index: 10;
 }
 .glitch::before,
 .glitch::after {
@@ -80,7 +79,6 @@ body {
   100% { transform: translate(0); }
 }
 
-/* Apply two staggered animations to pseudo-elements to create non-repetitive bursts */
 .glitch::before {
   animation: glitch-anim 4s infinite ease-in-out, glitch-slice 1.1s infinite linear;
   animation-delay: -0.35s, -0.9s;
@@ -92,11 +90,9 @@ body {
   will-change: transform, clip-path, opacity;
 }
 
-/* Slight RGB offsets for visible split */
 .glitch::before { transform: translate(-2px, 0); }
 .glitch::after { transform: translate(2px, 0); }
 
-/* Improve contrast for clipped slices during animation */
 .glitch {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

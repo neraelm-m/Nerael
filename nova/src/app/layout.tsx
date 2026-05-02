@@ -25,12 +25,11 @@ export default function RootLayout({
     <html lang="es" className="scroll-smooth" data-scroll-behavior="smooth">
       <body className={`${inter.variable} ${jetbrains.variable} font-sans bg-black text-white antialiased`}>
         
-        {/* EL NAVBAR DEBE ESTAR AQUÍ PARA QUE APAREZCA ARRIBA */}
         <Navbar /> 
 
         <div className="flex flex-col min-h-screen">
           <AudioResume />
-          <main className="flex-grow pt-20"> {/* pt-20 evita que el Navbar tape el contenido */}
+          <main className="flex-grow pt-20">
             {children}
           </main>
           <Footer />

@@ -9,7 +9,7 @@ const VIDEO_FILES = [
     poster: "/assets/thumbnails/img1.jpg",
     title: "¿VILLANO_O_HEROE?", 
     category: "PROJECT_NEO // ANALYSIS",
-    desc: "SDR_LOG: Análisis de narrativa oscura y descenso psicológico."
+    desc: "Análisis de narrativa oscura y descenso psicológico."
   },
   { 
     id: "002", 
@@ -17,7 +17,7 @@ const VIDEO_FILES = [
     poster: "/assets/thumbnails/img2.jpg", 
     title: "MIKU_V2_PROTOTYPE", 
     category: "AUDIO_VISUAL // MUSIC",
-    desc: "DATA_CORE: Renderizado de performance vocaloid optimizada."
+    desc: "Renderizado de performance vocaloid optimizado."
   },
   {
     id: "003", 
@@ -25,7 +25,7 @@ const VIDEO_FILES = [
     poster: "/assets/thumbnails/img3.jpg", 
     title: "HATSUNE_MIKU_DANCE", 
     category: "ANIMATION // TEST",
-    desc: "SYS_REF: Secuencia de coreografía rítmica activa."
+    desc: "Secuencia de coreografía rítmica activa."
   },
   {
     id: "004", 
@@ -33,7 +33,7 @@ const VIDEO_FILES = [
     poster: "/assets/thumbnails/img4.png", 
     title: "THRONE_AND_LIBERTY_EXP", 
     category: "MMORPG // ARCHIVE",
-    desc: "WORLD_DATA: Registro de exploración en Solisium."
+    desc: "Registro de exploración en Solisium."
   }
 ];
 
@@ -44,18 +44,15 @@ export default function VideosPage() {
   return (
     <main className="min-h-screen bg-black text-white pt-32 pb-20 px-6 md:px-20 font-sans selection:bg-red-600 overflow-x-hidden">
       
-      {/* DECORACIÓN DE FONDO: Líneas de escaneo opcionales */}
+      
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-50 bg-[length:100%_2px,3px_100%]"></div>
 
       <div className="max-w-7xl mx-auto relative">
         
-        {/* HEADER REDISEÑADO */}
+        
         <header className="mb-24 relative">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="h-[1px] w-12 bg-red-600 animate-pulse"></div>
-            <span className="text-[10px] font-mono tracking-[0.5em] text-red-500 uppercase font-bold">
-              System.Status: Active
-            </span>
+            <div className="flex items-center gap-4 mb-4">
+            <div className="h-[1px] w-12 bg-red-600"></div>
           </div>
           
           <h1 className="font-sans font-[800] italic tracking-tighter uppercase text-6xl md:text-8xl">
@@ -71,13 +68,12 @@ export default function VideosPage() {
               <span className="text-xs font-mono text-red-500">RAW_ENCODER_V3</span>
             </div>
             <div className="flex flex-col ml-auto">
-              <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest text-right">Access_Level</span>
               <span className="text-xs font-mono text-right">[ AUTHORIZED ]</span>
             </div>
           </div>
         </header>
 
-        {/* GRID MASONRY */}
+        
         <div className="columns-1 sm:columns-2 lg:columns-3 gap-10 space-y-12">
           {VIDEO_FILES.map((video) => (
             <div 
@@ -87,7 +83,7 @@ export default function VideosPage() {
               onMouseEnter={() => setHoveredId(video.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
-              {/* VIDEO CONTAINER */}
+              
               <div className="relative w-full bg-zinc-950 rounded-sm overflow-hidden shadow-2xl transition-all duration-500 group-hover:shadow-[0_0_50px_rgba(239,68,68,0.2)] group-hover:-translate-y-2">
                 
                 <img 
@@ -110,10 +106,10 @@ export default function VideosPage() {
                   )}
                 </div>
 
-                {/* HUD SOBRE EL VIDEO */}
+                
                 <div className="absolute top-0 inset-x-0 p-4 flex justify-between items-start z-40 opacity-0 group-hover:opacity-100 transition-all duration-500 transform -translate-y-2 group-hover:translate-y-0">
-                  <div className="bg-red-600 text-[8px] font-mono font-black px-2 py-0.5 tracking-tighter italic">
-                    {`${video.id} // SECURED_FEED`}
+                    <div className="bg-red-600 text-[8px] font-mono font-black px-2 py-0.5 tracking-tighter italic">
+                    {video.id}
                   </div>
                   <div className="flex gap-1">
                     {[1, 2, 3].map(i => (
@@ -126,7 +122,7 @@ export default function VideosPage() {
                 <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black via-black/40 to-transparent z-10"></div>
               </div>
 
-              {/* TEXTO DEBAJO REDISEÑADO */}
+              
               <div className="mt-5 px-1 relative">
                 <div className="flex items-center gap-2 mb-2">
                    <span className="w-1.5 h-1.5 bg-red-600 rotate-45"></span>
@@ -149,7 +145,7 @@ export default function VideosPage() {
           ))}
         </div>
 
-        {/* MODAL MAESTRO */}
+        
         {activeVideo && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-12 animate-in fade-in duration-500">
             <div className="absolute inset-0 bg-black/98 backdrop-blur-3xl" onClick={() => setActiveVideo(null)}></div>
@@ -157,11 +153,11 @@ export default function VideosPage() {
               
               <div className="w-full flex justify-between items-end mb-6 font-mono">
                 <div className="text-left">
-                   <p className="text-[10px] text-red-600 tracking-widest font-bold">DECRYPTING_CONTENT...</p>
+                   <p className="text-[10px] text-red-600 tracking-widest font-bold">Cargando contenido...</p>
                    <h2 className="text-3xl font-black italic tracking-tighter uppercase">{activeVideo.title}</h2>
                 </div>
                 <button onClick={() => setActiveVideo(null)} className="text-zinc-600 hover:text-red-500 text-[10px] tracking-[0.4em] uppercase border border-zinc-800 px-6 py-2 bg-black transition-all">
-                  [ TERMINATE_FEED ]
+                  Cerrar
                 </button>
               </div>
 

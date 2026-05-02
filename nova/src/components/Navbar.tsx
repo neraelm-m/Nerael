@@ -40,7 +40,7 @@ export default function Navbar() {
       <nav className="fixed top-0 w-full z-[100] bg-black/80 backdrop-blur-md border-b border-white/5 px-6 py-4 font-mono">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           
-          {/* LOGO */}
+          
           <Link href="/" onClick={() => setIsOpen(false)} className="group flex items-center gap-2 z-[110]">
             <div className="w-2 h-6 bg-red-600 group-hover:w-4 transition-all duration-300"></div>
             <span className="text-sm font-black tracking-[0.2em] text-white">
@@ -48,7 +48,7 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* DESKTOP NAV */}
+          
           <div className="hidden lg:flex items-center gap-8">
             <ul className="flex gap-8">
               {navLinks.map((link) => {
@@ -75,7 +75,7 @@ export default function Navbar() {
             </ul>
           </div>
 
-          {/* BOTÓN HAMBURGUESA (Z-INDEX ALTO) */}
+          
           <button 
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden z-[200] flex flex-col gap-1.5 p-2 focus:outline-none"
@@ -97,7 +97,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* MENU MÓVIL OVERLAY - FUERA DEL NAV PARA EVITAR CONFLICTOS DE Z-INDEX */}
+      
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -108,7 +108,7 @@ export default function Navbar() {
           >
             <div className="flex flex-col h-full p-10 justify-between overflow-y-auto pt-32">
               
-              {/* Contenedor de links */}
+              
               <ul className="flex flex-col gap-6 relative z-[160]">
                 {navLinks.map((link, i) => (
                   <motion.li 
@@ -130,12 +130,10 @@ export default function Navbar() {
                 ))}
               </ul>
 
-              {/* Footer técnico */}
+              
               <div className="mt-12 border-t border-white/10 pt-8 font-mono text-[10px] text-zinc-500 tracking-[0.3em] z-[160]">
-                <p className="text-red-600 font-bold mb-2">// SYSTEM_OVERRIDE_ACTIVE</p>
                 <div className="flex justify-between items-end">
                   <div className="space-y-1">
-                    <p>ACCESS_LEVEL: VISITOR</p>
                     <p>LOCAL_TIME: {new Intl.DateTimeFormat('es-VE', { hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(new Date())}</p>
                     <p className="text-[8px] opacity-30 mt-4 tracking-normal font-sans italic">PRØYET_RED // DAVID MARTINEZ [cite: 2026-01-02]</p>
                   </div>

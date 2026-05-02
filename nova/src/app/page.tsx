@@ -68,7 +68,6 @@ function ProjectCard({ title, description, tags, image, link }: {
           <h3 className="text-2xl font-sans font-black italic uppercase tracking-tighter text-white group-hover:text-red-500 transition-colors">
             {title}
           </h3>
-          <span className="text-[9px] font-mono text-red-600 font-bold tracking-widest animate-pulse">// ACTIVE_PROJ</span>
         </div>
         
         <p className="text-zinc-400 text-sm font-light leading-relaxed">
@@ -98,7 +97,7 @@ export default function Home() {
 
       <div className="relative z-10 flex flex-col items-center p-6 pt-16 pb-32 text-white">
         
-        {/* Status */}
+      
         <motion.div 
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -111,7 +110,7 @@ export default function Home() {
           <span className="text-[10px] text-emerald-500 font-mono tracking-[0.3em] uppercase font-bold">Disponible para proyectos</span>
         </motion.div>
 
-        {/* HERO SECTION */}
+        
         <div className="relative w-full max-w-5xl flex flex-col items-center text-center">
           <motion.div 
             initial={{ width: 0, opacity: 0 }}
@@ -152,7 +151,7 @@ export default function Home() {
           </p>
         </div>
 
-        {/* SOBRE MÍ Y BOTÓN CV */}
+        
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -188,12 +187,9 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* SECCIÓN DE PROYECTOS */}
+        
         <div className={`w-full max-w-5xl mt-32 px-4 ${SHOW_FEATURED ? '' : 'hidden'}`} aria-hidden={!SHOW_FEATURED}>
           <div className="flex flex-col items-center mb-16 space-y-2">
-            <p className="text-zinc-600 font-mono text-[10px] uppercase tracking-[0.5em]">
-              // SELECTED_OPERATIONS
-            </p>
             <h2 className="text-5xl md:text-6xl font-sans font-black italic uppercase tracking-tighter">
               Proyectos <span className="text-red-600">Destacados</span>
             </h2>
@@ -223,7 +219,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* STACK DE HABILIDADES Y ICONOS */}
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl mt-12">
           <TechCard title="Frontend" color="text-cyan-400">
             <TechBadge name="Next.js" icon={SiNextdotjs} />

@@ -63,7 +63,7 @@ export default function LibrosPage() {
   return (
     <main className="relative min-h-screen bg-black text-zinc-400 font-mono p-8 pt-32 overflow-hidden">
       
-      {/* 1. FONDO (Asegúrate de que esta ruta exista o cámbiala por wallpaper7.jpg) */}
+      
       <TechBackground 
         opacity={0.15} 
         imagePath="/assets/images/wallpaper7.jpg" 
@@ -115,7 +115,7 @@ export default function LibrosPage() {
                 <p className="text-zinc-600">Class: <span className="text-zinc-300">{item.type}</span></p>
                 <p className="mt-1">Progress: <span className="text-emerald-500">{item.status}</span></p>
                 
-                {/* Indicador visual de "Libro" */}
+                
                 {item.id.includes('BOOK') && (
                   <div className="mt-2 text-red-600 font-black text-[8px] animate-pulse">
                     [ MAIN_SAGA_FILE ]

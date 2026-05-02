@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
           
-          {/* COLUMNA 1: IDENTIDAD DE MARCA */}
+          
           <div className="space-y-4">
             <h3 className="text-white font-black italic text-xl tracking-tighter uppercase">
               PRØYET<span className="text-red-600">_</span>RED
@@ -17,7 +17,7 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* COLUMNA 2: CONTACTO (WHATSAPP) */}
+          
           <div className="space-y-4">
             <h4 className="text-zinc-700 text-[10px] font-black uppercase tracking-[0.3em]">Direct_Communication</h4>
             <div className="flex flex-col gap-3">
@@ -37,7 +37,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* COLUMNA 3: DATOS DE LOCALIZACIÓN (MARACAIBO) */}
+          
           <div className="space-y-4">
             <h4 className="text-zinc-700 text-[10px] font-black uppercase tracking-[0.3em]">System_Location</h4>
             <div className="text-zinc-400 text-xs space-y-1 uppercase">
@@ -48,10 +48,10 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* BARRA INFERIOR: LEGAL Y CRÉDITOS */}
+        
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
           <div className="text-[9px] text-zinc-700 tracking-widest uppercase">
-            <p>© {new Date().getFullYear()} PRØYET_RED. Todos los derechos reservados.</p>
+            <p>{new Date().getFullYear()} PRØYET_RED.</p>
             <p className="mt-1 text-zinc-800">Diseñado y codificado por NERAEL</p>
           </div>
           

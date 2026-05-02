@@ -109,7 +109,7 @@ export default function Home() {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </span>
           <span className="text-[10px] text-emerald-500 font-mono tracking-[0.3em] uppercase font-bold">Disponible para proyectos</span>
-        </motion.div>
+        </Motion.div>
 
         
         <div className="relative w-full max-w-5xl flex flex-col items-center text-center">

@@ -1,0 +1,392 @@
+---
+type Props = {
+  active?: "home" | "proyectos" | "diseno" | "edicion" | "sobre-mi";
+};
+
+const { active = "home" } = Astro.props;
+
+const contactHref = active === "home" ? "#contacto" : "/#contacto";
+---
+
+<header class="global-header" data-global-header>
+  <nav class="global-header-inner" aria-label="Navegación principal">
+    <a class="global-brand" href="/" aria-label="NERAEL, inicio">
+      <span class="global-brand-mark">
+        <img src="/assets/images/Logo.png" alt="" />
+      </span>
+      <span class="global-brand-name">PRØYET_RED</span>
+    </a>
+
+    <div class="global-desktop-nav">
+      <a class:list={["global-nav-link", active === "home" && "active"]} href="/" aria-current={active === "home" ? "page" : undefined}>INICIO</a>
+      <a class:list={["global-nav-link", active === "proyectos" && "active"]} href="/proyectos" aria-current={active === "proyectos" ? "page" : undefined}>PROYECTOS</a>
+      <a class:list={["global-nav-link", active === "diseno" && "active"]} href="/diseno" aria-current={active === "diseno" ? "page" : undefined}>DISEÑO</a>
+      <a class:list={["global-nav-link", active === "edicion" && "active"]} href="/edicion" aria-current={active === "edicion" ? "page" : undefined}>EDICIÓN</a>
+      <a class:list={["global-nav-link", active === "sobre-mi" && "active"]} href="/sobre-mi" aria-current={active === "sobre-mi" ? "page" : undefined}>SOBRE MÍ</a>
+    </div>
+
+    <a class="global-contact" href={contactHref}>
+      <span>CONTACTO</span>
+      <i aria-hidden="true"></i>
+    </a>
+
+    <button
+      class="global-menu-toggle"
+      type="button"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="global-mobile-menu"
+    >
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="global-mobile-menu" id="global-mobile-menu" aria-hidden="true">
+  <div class="global-mobile-bg"></div>
+
+  <div class="global-mobile-inner">
+    <div class="global-mobile-top">
+      <span>PRØYET_RED</span>
+      <span>MENU / 2026</span>
+    </div>
+
+    <nav class="global-mobile-nav" aria-label="Navegación móvil">
+      <a class:list={["global-mobile-link", active === "home" && "active"]} href="/">
+        <span>01</span><strong>INICIO</strong>
+      </a>
+      <a class:list={["global-mobile-link", active === "proyectos" && "active"]} href="/proyectos">
+        <span>02</span><strong>PROYECTOS</strong>
+      </a>
+      <a class:list={["global-mobile-link", active === "diseno" && "active"]} href="/diseno">
+        <span>03</span><strong>DISEÑO</strong>
+      </a>
+      <a class:list={["global-mobile-link", active === "edicion" && "active"]} href="/edicion">
+        <span>04</span><strong>EDICIÓN</strong>
+      </a>
+      <a class:list={["global-mobile-link", active === "sobre-mi" && "active"]} href="/sobre-mi">
+        <span>05</span><strong>SOBRE MÍ</strong>
+      </a>
+      <a class="global-mobile-link" href={contactHref}>
+        <span>06</span><strong>CONTACTO</strong>
+      </a>
+    </nav>
+
+    <div class="global-mobile-footer">
+      <span>SOFTWARE · DESIGN · EDITION</span>
+      <span>NERAEL / 2026</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .global-header,
+  .global-mobile-menu {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .global-header {
+    position: fixed;
+    z-index: 80;
+    top: 16px;
+    left: 50%;
+    width: min(1180px, calc(100% - 32px));
+    transform: translateX(-50%);
+  }
+
+  .global-header-inner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    min-height: 64px;
+    padding: 8px 12px;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 18px;
+    background: rgba(7,7,8,.76);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    box-shadow: 0 14px 50px rgba(0,0,0,.3);
+  }
+
+  .global-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    min-width: 205px;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .global-brand-mark {
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+
+  .global-brand-mark img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .global-brand-name {
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .16em;
+  }
+
+  .global-desktop-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    flex: 1;
+  }
+
+  .global-nav-link {
+    position: relative;
+    padding: 9px 10px;
+    color: rgba(255,255,255,.53);
+    text-decoration: none;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    transition: color .2s ease;
+  }
+
+  .global-nav-link::after {
+    content: "";
+    position: absolute;
+    right: 10px;
+    bottom: 3px;
+    left: 10px;
+    height: 1px;
+    background: #ed233f;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform .22s ease;
+  }
+
+  .global-nav-link:hover,
+  .global-nav-link.active {
+    color: #fff;
+  }
+
+  .global-nav-link:hover::after,
+  .global-nav-link.active::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .global-contact {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    min-width: 106px;
+    padding: 10px 13px;
+    border: 1px solid rgba(237,35,63,.45);
+    border-radius: 999px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .1em;
+    background: rgba(237,35,63,.035);
+    transition: background .2s ease, border-color .2s ease, transform .2s ease;
+  }
+
+  .global-contact i {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #ed233f;
+    box-shadow: 0 0 12px rgba(237,35,63,.8);
+  }
+
+  .global-contact:hover {
+    transform: translateY(-1px);
+    border-color: #ed233f;
+    background: rgba(237,35,63,.09);
+  }
+
+  .global-menu-toggle {
+    display: none;
+    width: 42px;
+    height: 40px;
+    border: 1px solid rgba(255,255,255,.11);
+    border-radius: 12px;
+    background: rgba(255,255,255,.025);
+    cursor: pointer;
+  }
+
+  .global-menu-toggle span {
+    display: block;
+    width: 16px;
+    height: 1px;
+    margin: 5px auto;
+    background: #fff;
+    transition: transform .25s ease;
+  }
+
+  .global-mobile-menu {
+    position: fixed;
+    z-index: 70;
+    inset: 0;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    padding: 105px 28px 35px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    background: rgba(5,5,5,.97);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    transition: opacity .25s ease, visibility .25s ease;
+  }
+
+  .global-mobile-menu.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .global-mobile-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 75% 20%, rgba(237,35,63,.11), transparent 30%),
+      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: auto, 65px 65px, 65px 65px;
+    pointer-events: none;
+  }
+
+  .global-mobile-inner {
+    position: relative;
+    z-index: 1;
+    width: min(700px, 100%);
+    margin: auto;
+  }
+
+  .global-mobile-top,
+  .global-mobile-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    color: rgba(255,255,255,.35);
+    font: 8px "Courier New", monospace;
+    letter-spacing: .12em;
+  }
+
+  .global-mobile-nav {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+  }
+
+  .global-mobile-link {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #fff;
+    text-decoration: none;
+    transition: color .2s ease, padding-left .2s ease;
+  }
+
+  .global-mobile-link span {
+    width: 28px;
+    color: rgba(255,255,255,.28);
+    font: 9px "Courier New", monospace;
+  }
+
+  .global-mobile-link strong {
+    font-size: clamp(30px, 7vw, 52px);
+    letter-spacing: -.045em;
+  }
+
+  .global-mobile-link:hover,
+  .global-mobile-link.active {
+    color: #ed233f;
+    padding-left: 7px;
+  }
+
+  .global-mobile-footer {
+    margin-top: 35px;
+  }
+
+  @media (max-width: 900px) {
+    .global-header {
+      top: 10px;
+      width: calc(100% - 20px);
+    }
+
+    .global-header-inner {
+      min-height: 58px;
+      border-radius: 15px;
+    }
+
+    .global-brand {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .global-desktop-nav,
+    .global-contact {
+      display: none;
+    }
+
+    .global-menu-toggle {
+      display: block;
+    }
+
+    body:has(.global-mobile-menu.open) {
+      overflow: hidden;
+    }
+
+    .global-mobile-menu {
+      padding: 92px 22px 25px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .global-nav-link,
+    .global-contact,
+    .global-menu-toggle span,
+    .global-mobile-link {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>(".global-menu-toggle");
+  const menu = document.querySelector<HTMLElement>("#global-mobile-menu");
+
+  const closeGlobalMenu = () => {
+    menu?.classList.remove("open");
+    menu?.setAttribute("aria-hidden", "true");
+    toggle?.setAttribute("aria-expanded", "false");
+  };
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = menu?.classList.toggle("open") ?? false;
+    menu?.setAttribute("aria-hidden", String(!isOpen));
+    toggle?.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  menu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeGlobalMenu);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeGlobalMenu();
+  });
+</script>

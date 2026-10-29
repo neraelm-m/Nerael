@@ -9,7 +9,7 @@ const projects = [
     title: "ALSACA",
     description:
       "Plataforma web para una alfarería con gestión de inventario, envíos y procesos internos.",
-    image: "/assets/demoalsaca/alsaca1.png",
+    image: "/assets/demoalsaca/alsaca1.webp",
     className: "project-main",
   },
   {
@@ -18,7 +18,7 @@ const projects = [
     title: "NERO NARRATIVE AI",
     description:
       "Concepto experimental centrado en inteligencia artificial, narrativa y experiencias digitales.",
-    image: "/assets/images/construccion.png",
+    image: "/assets/images/construccion.webp",
     className: "",
   },
   {
@@ -27,20 +27,17 @@ const projects = [
     title: "RED MARKET CORE",
     description:
       "Concepto de plataforma digital con una identidad visual inspirada en sistemas tecnológicos.",
-    image: "/assets/images/construccion.png",
+    image: "/assets/images/construccion.webp",
     className: "",
   },
 ];
 ---
 
 <Layout
-  title="NERAEL · PRØYET_RED"
-  description="David Martinez · Software Developer · PRØYET_RED"
+  title="NERAEL · Desarrollador de Software en Maracaibo | PRØYET_RED"
+  description="David Martinez (NERAEL), desarrollador de software y estudio digital PRØYET_RED en Maracaibo, Venezuela. Desarrollo web, diseño gráfico y edición de video."
 >
   <div class="ambient" aria-hidden="true">
-    <div class="ambient-image ambient-image-1"></div>
-    <div class="ambient-image ambient-image-2"></div>
-    <div class="ambient-image ambient-image-3"></div>
     <div class="ambient-red ambient-red-1"></div>
     <div class="ambient-red ambient-red-2"></div>
     <div class="ambient-grid"></div>
@@ -167,7 +164,7 @@ const projects = [
               <div class="project-number">{project.number}</div>
 
               <div class="project-image">
-                <img src={project.image || "/assets/images/construccion.png"} alt={project.title} loading="lazy" />
+                <img src={project.image || "/assets/images/construccion.webp"} alt={project.title} loading="lazy" />
                 <div class="project-image-overlay"></div>
                 <div class="project-scan"></div>
                 <span class="project-view">VIEW / 0{index + 1}</span>
@@ -199,7 +196,7 @@ const projects = [
       <div class="about-layout">
         <div class="about-visual reveal">
           <div class="about-image">
-            <img src="/assets/images/wallpaper2.jpg" alt="" loading="lazy" />
+            <img src="/assets/images/wallpaper2.webp" alt="" loading="lazy" />
             <div class="about-image-overlay"></div>
 
             <div class="about-photo-label">
@@ -332,9 +329,11 @@ const projects = [
     <section class="signature-section" id="entrada">
       <div class="signature-background" aria-hidden="true">
         <img
-          src="/assets/images/wallpaper1.png"
+          src="/assets/images/wallpaper1.webp"
           alt=""
           class="signature-image"
+          loading="lazy"
+          decoding="async"
         />
         <div class="signature-overlay"></div>
         <div class="signature-grid"></div>
@@ -367,10 +366,10 @@ const projects = [
           </p>
 
           <div class="signature-actions">
-            <a href="proyectos" class="signature-button primary magnetic">
+            <a href="/proyectos" class="signature-button primary magnetic">
               EXPLORAR PROYECTOS <span>↗</span>
             </a>
-            <a href="sobre-mi" class="signature-button secondary magnetic">
+            <a href="/sobre-mi" class="signature-button secondary magnetic">
               CONOCERME
             </a>
           </div>
@@ -451,6 +450,8 @@ const projects = [
         <a href="/diseno">Diseño</a>
         <a href="/edicion">Edición</a>
         <a href="/sobre-mi">Sobre mí</a>
+        <a href="/privacidad">Privacidad</a>
+        <a href="/terminos">Términos</a>
       </div>
 
       <div class="footer-column">
@@ -509,7 +510,10 @@ const projects = [
     { passive: true },
   );
 
+  const fineCursor = window.matchMedia("(pointer: fine)").matches;
+
   function animateCursor() {
+    if (!fineCursor) return;
     currentX += (mouseX - currentX) * 0.08;
     currentY += (mouseY - currentY) * 0.08;
 
@@ -760,23 +764,6 @@ const projects = [
     transform: scale(1.05);
   }
 
-  .ambient-image-1 {
-    background-image: url("/assets/images/wallpaper4.png");
-    opacity: 0.07;
-  }
-
-  .ambient-image-2 {
-    background-image: url("/assets/images/wallpaper6.jpg");
-    opacity: 0.035;
-    mix-blend-mode: screen;
-  }
-
-  .ambient-image-3 {
-    background-image: url("/assets/images/wallpaper8.jpg");
-    opacity: 0.025;
-    mix-blend-mode: screen;
-  }
-
   .ambient-red {
     position: absolute;
     width: 45vw;
@@ -814,7 +801,7 @@ const projects = [
     position: absolute;
     inset: 0;
     opacity: 0.02;
-    background-image: url("/assets/images/wallpaper5.png");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E");
     background-size: 500px;
     mix-blend-mode: screen;
   }

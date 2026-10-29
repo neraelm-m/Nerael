@@ -7,7 +7,7 @@ const videos = [
     id: "01",
     title: "VIDEO 01",
     video: "/assets/videos/video01.mp4",
-    poster: "/assets/thumbnails/video01.jpg",
+    poster: "/assets/thumbnails/video01.webp",
   },
   {
     id: "02",
@@ -25,7 +25,7 @@ const videos = [
     id: "04",
     title: "VIDEO 04",
     video: "/assets/videos/video04.mp4",
-    poster: "/assets/thumbnails/video04.png",
+    poster: "/assets/thumbnails/video04.webp",
   },
 ];
 
@@ -34,8 +34,8 @@ const whatsapp = "https://wa.me/584122791704";
 ---
 
 <Layout
-  title="Edición · NERAEL"
-  description="Edición de vídeo, motion y trabajos audiovisuales de David Martinez."
+  title="Edición de Video y Motion · NERAEL"
+  description="Edición de video, motion graphics y piezas audiovisuales por David Martinez (NERAEL) bajo el estudio PRØYET_RED."
 >
   <main class="page">
     <div class="ambient ambient-one"></div>
@@ -89,7 +89,7 @@ const whatsapp = "https://wa.me/584122791704";
             autoplay
             muted
             playsinline
-            preload="auto"
+            preload="metadata"
             poster={videos[0].poster}
             aria-label="Selección de vídeos de PRØYET_RED"
           >
@@ -162,7 +162,7 @@ const whatsapp = "https://wa.me/584122791704";
               <div class="video-frame">
                 <video
                   controls
-                  preload="metadata"
+                  preload="none"
                   playsinline
                   poster={item.poster}
                 >
@@ -317,6 +317,8 @@ const whatsapp = "https://wa.me/584122791704";
           <a href="/diseno">Diseño</a>
           <a href="/edicion">Edición</a>
           <a href="/sobre-mi">Sobre mí</a>
+          <a href="/privacidad">Privacidad</a>
+          <a href="/terminos">Términos</a>
         </div>
 
         <div class="footer-column">
@@ -423,7 +425,7 @@ const whatsapp = "https://wa.me/584122791704";
 
   .noise {
     opacity: 0.025;
-    background-image: url("/assets/images/wallpaper8.jpg");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E");
     background-size: 700px auto;
     mix-blend-mode: screen;
   }
@@ -1032,7 +1034,8 @@ const whatsapp = "https://wa.me/584122791704";
     border-radius: 28px;
     background:
       linear-gradient(100deg, rgba(0,0,0,.92), rgba(20,5,8,.78)),
-      url("/assets/images/wallpaper1.png") center/cover;
+      radial-gradient(circle at 80% 20%, rgba(237,35,63,.18), transparent 45%),
+      #050505;
   }
 
   .signature-copy {
@@ -1499,11 +1502,8 @@ const whatsapp = "https://wa.me/584122791704";
 </style>
 
 <script>
-  const header = document.getElementById("siteHeader");
   const progress = document.getElementById("scrollProgress");
   const cursor = document.getElementById("cursorLight");
-  const menuToggle = document.getElementById("menuToggle");
-  const mobileMenu = document.getElementById("mobileMenu");
 
   const updateScroll = () => {
     const scrollTop = window.scrollY;
@@ -1511,7 +1511,6 @@ const whatsapp = "https://wa.me/584122791704";
     const percent = total > 0 ? (scrollTop / total) * 100 : 0;
 
     if (progress) progress.style.width = `${percent}%`;
-    if (header) header.classList.toggle("scrolled", scrollTop > 20);
   };
 
   window.addEventListener("scroll", updateScroll, { passive: true });
@@ -1524,25 +1523,6 @@ const whatsapp = "https://wa.me/584122791704";
     });
   }
 
-  const closeMenu = () => {
-    mobileMenu?.classList.remove("open");
-    mobileMenu?.setAttribute("aria-hidden", "true");
-    menuToggle?.setAttribute("aria-expanded", "false");
-  };
-
-  menuToggle?.addEventListener("click", () => {
-    const open = mobileMenu?.classList.toggle("open") ?? false;
-    mobileMenu?.setAttribute("aria-hidden", String(!open));
-    menuToggle.setAttribute("aria-expanded", String(open));
-  });
-
-  mobileMenu?.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", closeMenu);
-  });
-
-  window.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeMenu();
-  });
 
 
   const reel = document.querySelector<HTMLElement>("[data-reel]");
@@ -1612,6 +1592,7 @@ const whatsapp = "https://wa.me/584122791704";
       showReelClip(reelIndex + 1);
     });
 
+    if (window.matchMedia("(hover: hover)").matches) {
     reel.addEventListener("mouseenter", () => {
       window.clearTimeout(reelTimer);
       reelVideo.pause();
@@ -1623,6 +1604,16 @@ const whatsapp = "https://wa.me/584122791704";
         showReelClip(reelIndex + 1);
       }, 4200);
     });
+    }
+
+    // pausar el reel cuando no está visible (ahorra datos y CPU)
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        reelVideo.play().catch(() => {});
+      } else {
+        reelVideo.pause();
+      }
+    }).observe(reel);
   }
 
   const observer = new IntersectionObserver(

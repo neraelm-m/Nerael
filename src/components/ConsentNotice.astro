@@ -1,0 +1,115 @@
+---
+---
+
+<div
+  class="consent"
+  id="consent-notice"
+  role="region"
+  aria-label="Aviso de términos y privacidad"
+  hidden
+>
+  <p>
+    Este sitio <strong>no usa cookies de seguimiento ni analítica</strong>.
+    Al continuar navegando aceptas los
+    <a href="/terminos">Términos y Condiciones</a> y la
+    <a href="/privacidad">Política de Privacidad</a>.
+  </p>
+
+  <div class="consent-actions">
+    <button type="button" class="consent-accept" data-consent-accept>ACEPTAR</button>
+  </div>
+</div>
+
+<style>
+  .consent {
+    position: fixed;
+    z-index: 200;
+    left: 50%;
+    bottom: 16px;
+    width: min(760px, calc(100% - 32px));
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 14px 16px 14px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 16px;
+    background: rgba(8, 8, 10, 0.94);
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.5);
+    color: rgba(255, 255, 255, 0.78);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .consent[hidden] {
+    display: none;
+  }
+
+  .consent p {
+    margin: 0;
+  }
+
+  .consent strong {
+    color: #fff;
+  }
+
+  .consent a {
+    color: #fff;
+    text-decoration: underline;
+    text-decoration-color: #ed233f;
+    text-underline-offset: 3px;
+  }
+
+  .consent-accept {
+    flex-shrink: 0;
+    padding: 11px 18px;
+    border: 1px solid #ed233f;
+    border-radius: 10px;
+    background: #c91c37;
+    color: #fff;
+    font: 800 10px Arial, Helvetica, sans-serif;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+  }
+
+  .consent-accept:hover,
+  .consent-accept:focus-visible {
+    background: #ed233f;
+  }
+
+  @media (max-width: 560px) {
+    .consent {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+      padding: 16px;
+    }
+  }
+</style>
+
+<script>
+  const KEY = "nerael-aviso-legal-v1";
+  const notice = document.getElementById("consent-notice");
+
+  let accepted = false;
+  try {
+    accepted = localStorage.getItem(KEY) === "accepted";
+  } catch {
+    accepted = false;
+  }
+
+  if (notice && !accepted) {
+    notice.hidden = false;
+
+    notice.querySelector("[data-consent-accept]")?.addEventListener("click", () => {
+      try {
+        localStorage.setItem(KEY, "accepted");
+      } catch {
+        /* sin almacenamiento: el aviso solo se oculta en esta visita */
+      }
+      notice.hidden = true;
+    });
+  }
+</script>

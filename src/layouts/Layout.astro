@@ -1,25 +1,171 @@
 ---
+import ConsentNotice from "../components/ConsentNotice.astro";
+
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  imageAlt?: string;
+  noindex?: boolean;
 }
 
 const {
-  title = "NERAEL · PRØYET_RED",
-  description = "David Martinez · Software Developer",
+  title = "NERAEL · Desarrollador de Software en Maracaibo | PRØYET_RED",
+  description = "David Martinez (NERAEL), desarrollador de software y estudio digital PRØYET_RED en Maracaibo, Venezuela. Desarrollo web, diseño gráfico y edición de video.",
+  image = "/og-image.jpg",
+  imageAlt = "NERAEL · PRØYET_RED — Software, diseño y edición",
+  noindex = false,
 } = Astro.props;
+
+// URL canónica sin barra final (salvo la raíz) para que coincida con el sitemap
+const site = Astro.site;
+const path = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const canonical = site ? new URL(path, site).href : undefined;
+const ogImage = site ? new URL(image, site).href : image;
+
+const siteUrl = site ? site.href.replace(/\/$/, "") : undefined;
+const schema = siteUrl
+  ? {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": `${siteUrl}/#website`,
+          url: `${siteUrl}/`,
+          name: "NERAEL · PRØYET_RED",
+          inLanguage: "es",
+          publisher: { "@id": `${siteUrl}/#studio` },
+        },
+        {
+          "@type": "Person",
+          "@id": `${siteUrl}/#person`,
+          name: "David Martinez",
+          alternateName: "NERAEL",
+          jobTitle: "Desarrollador de software",
+          url: `${siteUrl}/`,
+          email: "mailto:nerael.m@gmail.com",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Maracaibo",
+            addressRegion: "Zulia",
+            addressCountry: "VE",
+          },
+          sameAs: ["https://github.com/neraelm-m"],
+          knowsAbout: [
+            "Desarrollo de software",
+            "Desarrollo web",
+            "Astro",
+            "TypeScript",
+            "Diseño gráfico",
+            "Edición de video",
+          ],
+          worksFor: { "@id": `${siteUrl}/#studio` },
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": `${siteUrl}/#studio`,
+          name: "PRØYET_RED",
+          alternateName: "NERAEL",
+          description:
+            "Estudio digital independiente de desarrollo de software, diseño gráfico y edición de video.",
+          url: `${siteUrl}/`,
+          logo: new URL("/assets/images/Logo.png", site).href,
+          image: ogImage,
+          email: "nerael.m@gmail.com",
+          founder: { "@id": `${siteUrl}/#person` },
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Maracaibo",
+            addressRegion: "Zulia",
+            addressCountry: "VE",
+          },
+          sameAs: ["https://github.com/neraelm-m"],
+        },
+      ],
+    }
+  : undefined;
 ---
 
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#050505" />
     <title>{title}</title>
+
+    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"} />
+    <meta name="author" content="David Martinez" />
+
+    <link rel="icon" type="image/png" href="/assets/images/Logo.png" />
+    <link rel="apple-touch-icon" href="/assets/images/Logo.png" />
+    {canonical && <link rel="canonical" href={canonical} />}
+    {site && <link rel="sitemap" type="application/xml" href="/sitemap.xml" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="NERAEL · PRØYET_RED" />
+    <meta property="og:locale" content="es_VE" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+
+    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, "\\u003c")} />}
+
+    <!-- Sin JS el contenido sigue visible -->
+    <noscript>
+      <style>
+        .reveal,
+        .intro-item {
+          opacity: 1 !important;
+          transform: none !important;
+          filter: none !important;
+          animation: none !important;
+        }
+      </style>
+    </noscript>
+
+    <!-- Móvil / pantallas táctiles: sin efectos costosos para la GPU -->
+    <style is:global>
+      @media (hover: none), (max-width: 820px) {
+        .ambient-red,
+        .red-orb,
+        .signature-orb,
+        .hero-image-glow {
+          display: none !important;
+        }
+
+        .ambient-one,
+        .ambient-two,
+        .ambient-three {
+          display: none !important;
+        }
+
+        .noise,
+        .ambient-noise,
+        .cursor-light {
+          display: none !important;
+        }
+
+        .reveal {
+          transition-duration: 0.45s !important;
+        }
+      }
+    </style>
   </head>
 
   <body>
     <slot />
+    <ConsentNotice />
   </body>
 </html>
